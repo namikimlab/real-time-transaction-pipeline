@@ -1,0 +1,62 @@
+# Ignore version control
+.git
+.gitignore
+
+# Python cache and virtual environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+*$py.class
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+postgres/venv/
+kafka/producer/venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# MacOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Test, coverage, and build artifacts
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs
+*.log
+
+# Docs (if not needed in image)
+docs/
+
+# Spark JARs (if not needed in image)
+spark/jars/
+
+# Docker Compose override files (if any)
+docker-compose.override.yml
+
+# Ignore large data or output files (add as needed)
+*.db
+*.sqlite3
+*.csv
+*.tsv
+*.parquet 
