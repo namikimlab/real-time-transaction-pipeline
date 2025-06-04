@@ -4,8 +4,8 @@ default:
     dev:
       type: postgres
       host: localhost
-      user: admin
-      password: admin
+      user: {{ env_var('POSTGRES_USER') }}
+      password: {{ env_var('POSTGRES_PASSWORD') }}
       port: 5432
-      dbname: transactions
+      dbname: {{ env_var('POSTGRES_DB') }}
       schema: public

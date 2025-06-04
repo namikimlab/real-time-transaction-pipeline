@@ -5,8 +5,8 @@
 - Host: postgres
 - Port: 5432
 - DB: transactions
-- User: admin
-- Password: admin
+- User: POSTGRES_USER
+- Password: POSTGRES_PASSWORD
 
 ## Dashboards
 

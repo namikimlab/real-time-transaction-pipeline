@@ -1,15 +1,20 @@
 import psycopg2
 import uuid
 from faker import Faker
+import os
+from dotenv import load_dotenv, find_dotenv
+
+# Get absolute path to project root (2 levels up for example)   
+load_dotenv(find_dotenv())
 
 fake = Faker()
 
 conn = psycopg2.connect(
     host="localhost",
     port=5432,
-    dbname="transactions",
-    user="admin",
-    password="admin"
+    dbname=os.getenv("POSTGRES_DB"),
+    user=os.getenv("POSTGRES_USER"),
+    password=os.getenv("POSTGRES_PASSWORD")
 )
 cur = conn.cursor()
 

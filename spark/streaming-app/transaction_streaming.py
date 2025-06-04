@@ -1,6 +1,14 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 from pyspark.sql.functions import from_json, col, when
+import os
+from dotenv import load_dotenv, find_dotenv
+
+# Always load env vars from .env file automatically
+load_dotenv(find_dotenv())
+
+POSTGRES_USER = os.getenv("POSTGRES_USER")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
 
 # Spark Session
 spark = SparkSession.builder \
@@ -59,8 +67,8 @@ def write_to_postgres(batch_df, batch_id):
         .format("jdbc") \
         .option("url", "jdbc:postgresql://postgres:5432/transactions") \
         .option("dbtable", "fact_transaction") \
-        .option("user", "admin") \
-        .option("password", "admin") \
+        .option("user", POSTGRES_USER) \
+        .option("password", POSTGRES_PASSWORD) \
         .option("driver", "org.postgresql.Driver") \
         .mode("append") \
         .save()
