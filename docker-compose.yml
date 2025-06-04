@@ -1,3 +1,15 @@
+x-airflow-common: &airflow-common
+  build:
+    context: ./airflow
+  environment:
+    - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+    - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    - AIRFLOW__CORE__FERNET_KEY=${AIRFLOW_FERNET_KEY}
+    - AIRFLOW__CORE__LOAD_EXAMPLES=False
+  volumes:
+    - ./airflow/dags:/opt/airflow/dags
+    - ./dbt:/opt/airflow/dbt
+
 services:
 
   kafka:
@@ -78,21 +90,9 @@ services:
     command: >
       /opt/spark/bin/spark-submit
       --master spark://spark-master:7077
-      --conf spark.jars=/opt/spark/external-jars/spark-sql-kafka-0-10_2.12-3.5.0.jar,/opt/spark/external-jars/kafka-clients-3.5.0.jar,/opt/spark/external-jars/spark-token-provider-kafka-0-10_2.12-3.5.0.jar,/opt/spark/external-jars/postgresql-42.6.0.jar
+      --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0,org.postgresql:postgresql:42.6.0
       --conf spark.jars.ivy=/tmp/.ivy2
       transaction_streaming.py
-
-  x-airflow-common: &airflow-common
-    build:
-      context: ./airflow
-    environment:
-      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
-      - AIRFLOW__CORE__FERNET_KEY=${AIRFLOW_FERNET_KEY}
-      - AIRFLOW__CORE__LOAD_EXAMPLES=False
-    volumes:
-      - ./airflow/dags:/opt/airflow/dags
-      - ./dbt:/opt/airflow/dbt
 
   airflow-init:
     <<: *airflow-common
