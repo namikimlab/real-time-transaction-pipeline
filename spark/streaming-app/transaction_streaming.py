@@ -1,3 +1,9 @@
+# Reads Kafka stream in near real-time
+# Parses transaction records
+# Runs fraud detection logic (business rules on-the-fly)
+# Writes each record into fact_transaction in Postgres
+
+
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 from pyspark.sql.functions import from_json, col, when
@@ -9,6 +15,8 @@ load_dotenv(find_dotenv())
 
 POSTGRES_USER = os.getenv("POSTGRES_USER")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
+
+KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "kafka:9092")
 
 # Spark Session
 spark = SparkSession.builder \

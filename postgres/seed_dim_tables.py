@@ -1,6 +1,6 @@
 # Those are your lookup dimensions.
 # In real systems: customer & merchant master data come from operational systems.
-# You want them seeded before transactions start because:
+# You want them seeded before transactions start 
 
 import psycopg2
 import uuid

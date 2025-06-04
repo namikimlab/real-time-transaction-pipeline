@@ -1,9 +1,21 @@
+# Emits synthetic transactions into Kafka topic transactions
+#
+# Each transaction record includes:
+# Customer ID (linked to dim_customer)
+# Merchant ID (linked to dim_merchant)
+# Amount, timestamp, payment method, etc.
+# 
+#  In a real company, this simulates your actual payment platform's transaction stream.
+
 import json
 import random
 import uuid
 import time
 from datetime import datetime
 from confluent_kafka import Producer
+
+# Configurable limit for dev mode
+MESSAGE_LIMIT = 100  # Set None for infinite mode
 
 p = Producer({'bootstrap.servers': 'localhost:9092'})
 
@@ -33,8 +45,16 @@ def delivery_report(err, msg):
     else:
         print('Delivered message to', msg.topic())
 
+# Main loop
+counter = 0
 while True:
     txn = generate_transaction()
     p.produce('transactions', json.dumps(txn).encode('utf-8'), callback=delivery_report)
     p.poll(0)
     time.sleep(0.5)
+    
+    counter += 1
+    if MESSAGE_LIMIT is not None and counter >= MESSAGE_LIMIT:
+        break
+
+p.flush()
