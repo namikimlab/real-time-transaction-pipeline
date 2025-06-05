@@ -1,0 +1,11 @@
+name: real_time_pipeline
+version: 1.0.0
+
+profile: default
+
+models:
+  real_time_pipeline:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: view 
