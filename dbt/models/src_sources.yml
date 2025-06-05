@@ -1,0 +1,69 @@
+version: 2
+
+sources:
+  - name: public
+    schema: public
+    tables:
+      - name: dim_customer
+        columns:
+          - name: customer_id
+            description: "Primary key. Unique identifier for the customer."
+            tests: [unique, not_null]
+          - name: customer_name
+            description: "Name of the customer."
+            tests: [not_null]
+          - name: customer_email
+            description: "Email address of the customer."
+            tests: [not_null]
+          - name: registered_at
+            description: "Timestamp when the customer registered."
+            tests: [not_null]
+      - name: dim_merchant
+        columns:
+          - name: merchant_id
+            description: "Primary key. Unique identifier for the merchant."
+            tests: [unique, not_null]
+          - name: merchant_name
+            description: "Name of the merchant."
+            tests: [not_null]
+          - name: merchant_category
+            description: "Category of the merchant."
+            tests: [not_null]
+          - name: country
+            description: "Country where the merchant is located."
+            tests: [not_null]
+      - name: fact_transaction
+        columns:
+          - name: transaction_id
+            description: "Primary key. Unique identifier for the transaction."
+            tests: [unique, not_null]
+          - name: timestamp
+            description: "Timestamp of the transaction."
+            tests: [not_null]
+          - name: customer_id
+            description: "Foreign key to dim_customer."
+            tests: [not_null]
+          - name: merchant_id
+            description: "Foreign key to dim_merchant."
+            tests: [not_null]
+          - name: amount
+            description: "Transaction amount."
+            tests: [not_null]
+          - name: currency
+            description: "Currency of the transaction."
+            tests: [not_null]
+          - name: latitude
+            description: "Latitude of the transaction location."
+          - name: longitude
+            description: "Longitude of the transaction location."
+          - name: device_id
+            description: "Device identifier used for the transaction."
+          - name: payment_method
+            description: "Payment method used."
+            tests: [not_null]
+          - name: is_foreign
+            description: "Indicates if the transaction is foreign."
+            tests: [not_null]
+          - name: is_fraud
+            description: "Indicates if the transaction is fraudulent."
+            tests: [not_null] 

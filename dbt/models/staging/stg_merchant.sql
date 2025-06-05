@@ -1,5 +1,5 @@
 with source as (
-    select * from public.dim_merchant
+    select * from {{ source('public', 'dim_merchant') }}
 )
 
 select
