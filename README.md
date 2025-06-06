@@ -131,7 +131,7 @@ The Kafka Producer serves as the upstream system feeding the real-time stream.
 * Data quality is enforced at the transformation layer to ensure reliable analytics.
 
 ## ⏰ Orchestration (Airflow)
-![DAG Screenshot](./screenshots/DAG.png)
+![DAG Screenshot](./screenshots/dag.png)
 
 * Daily dbt runs scheduled via Airflow DAGs
 * DAG triggers batch models, tests 
