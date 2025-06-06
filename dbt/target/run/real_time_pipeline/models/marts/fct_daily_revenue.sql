@@ -1,10 +1,17 @@
 
-  create view "transactions"."public"."fct_daily_revenue__dbt_tmp"
+      
+  
     
-    
-  as (
+
+  create  table "transactions"."public"."fct_daily_revenue"
+  
+  
+    as
+  
+  (
     with tx as (
     select * from "transactions"."public"."stg_fact_transaction"
+    
 )
 
 select
@@ -16,3 +23,5 @@ from tx
 group by 1
 order by 1 desc
   );
+  
+  

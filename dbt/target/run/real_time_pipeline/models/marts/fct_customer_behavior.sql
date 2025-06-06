@@ -1,10 +1,17 @@
 
-  create view "transactions"."public"."fct_customer_behavior__dbt_tmp"
+      
+  
     
-    
-  as (
+
+  create  table "transactions"."public"."fct_customer_behavior"
+  
+  
+    as
+  
+  (
     with transactions as (
     select * from "transactions"."public"."stg_fact_transaction"
+    
 ),
 
 customers as (
@@ -48,3 +55,5 @@ customer_metrics as (
 
 select * from customer_metrics
   );
+  
+  

@@ -1,10 +1,17 @@
 
-  create view "transactions"."public"."fct_daily_fraud_summary__dbt_tmp"
+      
+  
     
-    
-  as (
+
+  create  table "transactions"."public"."fct_daily_fraud_summary"
+  
+  
+    as
+  
+  (
     with transactions as (
     select * from "transactions"."public"."stg_fact_transaction"
+    
 ),
 
 daily_fraud as (
@@ -26,3 +33,5 @@ daily_fraud as (
 select * from daily_fraud
 order by tx_date desc
   );
+  
+  

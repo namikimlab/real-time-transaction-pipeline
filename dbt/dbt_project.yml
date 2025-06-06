@@ -8,4 +8,5 @@ models:
     staging:
       +materialized: view
     marts:
-      +materialized: view 
+      +materialized: incremental
+      +on_schema_change: append_new_column

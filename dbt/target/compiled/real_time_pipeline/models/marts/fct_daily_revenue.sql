@@ -1,5 +1,6 @@
 with tx as (
     select * from "transactions"."public"."stg_fact_transaction"
+    
 )
 
 select

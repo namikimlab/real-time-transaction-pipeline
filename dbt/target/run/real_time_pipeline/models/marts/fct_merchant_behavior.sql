@@ -1,9 +1,21 @@
-with transactions as (
-    select * from {{ ref('stg_fact_transaction') }}
+
+      
+  
+    
+
+  create  table "transactions"."public"."fct_merchant_behavior"
+  
+  
+    as
+  
+  (
+    with transactions as (
+    select * from "transactions"."public"."stg_fact_transaction"
+    
 ),
 
 merchants as (
-    select * from {{ ref('stg_merchant') }}
+    select * from "transactions"."public"."stg_merchant"
 ),
 
 enriched as (
@@ -37,3 +49,6 @@ merchant_metrics as (
 
 select * from merchant_metrics
 order by fraud_ratio desc
+  );
+  
+  

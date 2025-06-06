@@ -1,5 +1,8 @@
 with transactions as (
     select * from {{ ref('stg_fact_transaction') }}
+    {% if is_incremental() %}
+      where transaction_ts > coalesce((select max(transaction_ts) from {{ this }}), '1900-01-01')
+    {% endif %}
 ),
 
 daily_fraud as (

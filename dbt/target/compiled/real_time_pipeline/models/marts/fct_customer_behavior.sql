@@ -1,5 +1,6 @@
 with transactions as (
     select * from "transactions"."public"."stg_fact_transaction"
+    
 ),
 
 customers as (
