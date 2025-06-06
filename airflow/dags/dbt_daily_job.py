@@ -16,9 +16,19 @@ with DAG(
     catchup=False
 ) as dag:
 
+    run_dbt_deps = BashOperator(
+        task_id='run_dbt_deps',
+        bash_command='cd /opt/airflow/dbt && dbt deps'
+    )
+
     run_dbt = BashOperator(
         task_id='run_dbt_models',
         bash_command='cd /opt/airflow/dbt && dbt run'
     )
 
-    run_dbt
+    test_dbt = BashOperator(
+        task_id='test_dbt_models',
+        bash_command='cd /opt/airflow/dbt && dbt test'
+    )
+
+    run_dbt_deps >> run_dbt >> test_dbt

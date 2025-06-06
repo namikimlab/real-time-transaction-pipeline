@@ -42,28 +42,56 @@ sources:
             tests: [not_null]
           - name: customer_id
             description: "Foreign key to dim_customer."
-            tests: [not_null]
+            tests:
+              - not_null
+              - relationships:
+                  to: source('public', 'dim_customer')
+                  field: customer_id
           - name: merchant_id
             description: "Foreign key to dim_merchant."
-            tests: [not_null]
+            tests: 
+              - not_null
+              - relationships:
+                  to: source('public', 'dim_merchant')
+                  field: merchant_id
           - name: amount
             description: "Transaction amount."
-            tests: [not_null]
+            tests: 
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_between:
+                min_value: 0.0
           - name: currency
             description: "Currency of the transaction."
             tests: [not_null]
           - name: latitude
             description: "Latitude of the transaction location."
+            tests:
+              - dbt_expectations.expect_column_values_to_be_between:
+                min_value: 25.0
+                max_value: 49.0
           - name: longitude
             description: "Longitude of the transaction location."
+            tests:
+              - dbt_expectations.expect_column_values_to_be_between:
+                min_value: -125.0
+                max_value: -66.0
           - name: device_id
             description: "Device identifier used for the transaction."
           - name: payment_method
             description: "Payment method used."
-            tests: [not_null]
+            tests: 
+              - not_null 
+              - accepted_values:
+                  values: ['credit_card', 'debit_card', 'apple_pay', 'google_pay']
           - name: is_foreign
             description: "Indicates if the transaction is foreign."
-            tests: [not_null]
+            tests: 
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_in_set:
+                  value_set: [true, false]
           - name: is_fraud
             description: "Indicates if the transaction is fraudulent."
-            tests: [not_null] 
+            tests: 
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_in_set:
+                  value_set: [true, false]
