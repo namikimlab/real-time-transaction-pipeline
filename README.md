@@ -79,9 +79,9 @@ Metabase (Dashboards)
 
 ### `fact_transaction`
 
-| transaction\_id | timestamp | customer\_id | merchant\_id | amount | location | is\_fraud |
-| --------------- | --------- | ------------ | ------------ | ------ | -------- | --------- |
-| UUID            | timestamp | UUID         | UUID         | float  | lat/lon  | boolean   |
+| transaction_id | transaction_ts | customer_id | merchant_id | amount | currency | latitude | longitude | device_id | payment_method | is_foreign | is_fraud |
+| -------------- | -------------- | ----------- | ----------- | ------ | -------- | -------- | --------- | --------- | -------------- | ---------- | -------- |
+| UUID           | timestamp      | UUID        | UUID        | float  | string   | float    | float     | string    | string         | boolean    | boolean  |
 
 ### `dim_customer`, `dim_merchant`
 
