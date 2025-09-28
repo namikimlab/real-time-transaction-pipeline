@@ -1,8 +1,6 @@
 SELECT
-  customer_id,
-  total_transactions,
-  fraud_transactions,
-  fraud_ratio
-FROM fct_daily_fraud_summary
-ORDER BY fraud_ratio DESC
-LIMIT 10
+    tx_date,
+    fraud_count,
+    ROUND((fraud_count::decimal / NULLIF(tx_count, 0)), 3) AS fraud_ratio
+FROM public.fct_daily_revenue
+ORDER BY tx_date DESC;

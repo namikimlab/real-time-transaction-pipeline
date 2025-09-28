@@ -1,7 +1,9 @@
+[🇺🇸 English](./README.md) | [🇰🇷 한국어](./README.ko.md)
+
 # 📊 Real-Time Transaction Monitoring Pipeline
 
-[![Kafka](https://img.shields.io/badge/Kafka-231F20?style=flat&logo=apachekafka&logoColor=white)]()
 [![Spark](https://img.shields.io/badge/Spark-E25A1C?style=flat&logo=apachespark&logoColor=white)]()
+[![Kafka](https://img.shields.io/badge/Kafka-231F20?style=flat&logo=apachekafka&logoColor=white)]()
 [![Postgres](https://img.shields.io/badge/Postgres-336791?style=flat&logo=postgresql&logoColor=white)]()
 [![dbt](https://img.shields.io/badge/dbt-FF694B?style=flat&logo=dbt&logoColor=white)]()
 [![Airflow](https://img.shields.io/badge/Airflow-017CEE?style=flat&logo=apacheairflow&logoColor=white)]()
@@ -14,7 +16,6 @@ A full end-to-end real-time transaction monitoring pipeline that simulates a fin
 Built to showcase real-world data engineering skills across streaming, batch, orchestration, data modeling, and dashboarding.
 
 ![Architecture Diagram](./screenshots/architecture.png)
----
 
 ## 🚀 Project Purpose
 
@@ -203,5 +204,5 @@ This script will populate the `dim_customer` and `dim_merchant` tables with samp
 - Practiced realistic data quality testing via dbt tests.
 
 ---
-Made with 🧡 by Nami Kim  
-[Portfolio](https://namikimlab.github.io/) | [LinkedIn](https://linkedin.com/in/namixkim) | [GitHub](https://github.com/namikimlab) |  [Blog](https://namixkim.com) 
+🪲 by Nami Kim
+[Portfolio](https://namikimlab.github.io/) | [GitHub](https://github.com/namikimlab) | [Blog](https://namixkim.com) | [LinkedIn](https://linkedin.com/in/namixkim)
